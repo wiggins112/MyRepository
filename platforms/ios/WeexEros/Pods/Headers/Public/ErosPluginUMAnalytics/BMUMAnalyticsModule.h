@@ -1,0 +1,1 @@
+../../../ErosPluginUMAnalytics/Source/BMUMAnalyticsModule.h

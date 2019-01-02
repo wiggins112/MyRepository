@@ -1,0 +1,1 @@
+../../../ErosPluginWXShare/Source/BMUmengModule.h

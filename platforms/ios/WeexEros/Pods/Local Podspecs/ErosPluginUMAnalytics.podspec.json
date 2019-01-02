@@ -1,0 +1,24 @@
+{
+  "name": "ErosPluginUMAnalytics",
+  "version": "1.0.1",
+  "summary": "ErosPluginUMAnalytics Source .",
+  "homepage": "https://github.com/bmfe/eros-plugin-ios-UMAnalytics",
+  "license": "MIT",
+  "authors": {
+    "xionghuayu": "18601949015@163.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "https://github.com/bmfe/eros-plugin-ios-UMAnalytics.git",
+    "tag": "1.0.1"
+  },
+  "source_files": "Source/*.{h,m,mm}",
+  "requires_arc": true,
+  "dependencies": {
+    "UMCAnalytics": [
+      "5.5.0"
+    ]
+  }
+}

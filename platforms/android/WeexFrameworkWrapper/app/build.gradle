@@ -1,0 +1,160 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion '26.0.2'
+    flavorDimensions 'default'
+
+    defaultConfig {
+        applicationId APPLICATION_ID
+        minSdkVersion 21
+        targetSdkVersion TARGET_SDK_VERSION
+        versionCode 10705
+        versionName "1.7.5"
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        javaCompileOptions.annotationProcessorOptions.includeCompileClasspath = true
+
+        manifestPlaceholders = [
+            GETUI_APP_ID    : "kxGODFzsI28RCE8z0bAMD5",
+            GETUI_APP_KEY   : "HduFAPMhpr7tKenszXE0m5",
+            GETUI_APP_SECRET: "YebB9MoRJqAoL70MaT82J2",
+
+            XIAOMI_APP_ID   : "2882303761517833892",
+            XIAOMI_APP_KEY  : "5411783386892",
+
+            MEIZU_APP_ID    : "116472",
+            MEIZU_APP_KEY   : "639912d7033145c3b6673a283b91f4ad",
+
+            HUAWEI_APP_ID   : "100403761"
+        ]
+    }
+
+    signingConfigs {
+        eros {
+            keyAlias 'eros签名实例'
+            keyPassword 'erosdemo'
+            storeFile file('../eros_demo.jks')
+            storePassword 'erosdemo'
+            v2SigningEnabled false
+        }
+        release {
+            keyAlias 'bizhihui'
+            keyPassword '4RXKyYG6XPNpwybn'
+            storeFile file('../../../../key/bizhihui.jks')
+            storePassword 'h9B5nXvKu97nCK3t8P5g'
+            v2SigningEnabled false
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            ndk {
+                abiFilters "armeabi"
+            }
+            manifestPlaceholders = [
+                    GETUI_APP_ID    : GETUI_APPID,
+                    GETUI_APP_KEY   : GETUI_APPKEY,
+                    GETUI_APP_SECRET: GETTUI_APPSECRET,
+                    APP_ID          : APPLICATION_ID
+            ]
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            manifestPlaceholders = [
+                    GETUI_APP_ID    : GETUI_APPID,
+                    GETUI_APP_KEY   : GETUI_APPKEY,
+                    GETUI_APP_SECRET: GETTUI_APPSECRET,
+                    APP_ID          : APPLICATION_ID
+            ]
+            ndk {
+                abiFilters "x86"
+                abiFilters "armeabi"
+            }
+        }
+
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+
+    productFlavors {
+        samplechannel {
+            dimension 'default'
+        }
+
+
+
+        yingyongbao {
+            dimension 'default'
+        }
+    }
+    productFlavors.all {
+        flavor -> flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['../wxframework/libs']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+    flatDir {
+
+        dirs '../wxframework/libs', 'libs'
+
+    }
+    google()
+}
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:support-v4:${PROJECT_SUPPORTLIBVERSION}"
+    testCompile 'junit:junit:4.12'
+    // 基础库
+    compile project(':nexus')
+    compile project(':wxframework')
+    //Amap
+    compile project(':erospluginamap')
+    //个推
+    compile project(':erosplugingt')
+    //微信支付
+    compile project(':erospluginwxpay')
+    //分享
+    compile project(':erospluginwxshare')
+    //umeng统计
+    compile project(':erospluginum')
+    compile 'com.umeng.sdk:common:1.5.3'
+    compile 'com.umeng.sdk:analytics:7.5.3'
+    //下载
+    compile 'com.instapp.nat:transfer:2.0.0'
+    //安装应用
+    compile 'com.github.maning0303:MNUpdateAPK:V1.1.8'
+    //截屏
+    compile 'com.github.nisrulz:screenshott:2.0.0'
+    //腾讯验证码
+    compile project(':captchasdk-release')
+    implementation project(':erosplugingoalkeeper')
+    implementation project(':erospluginscreenshot')
+    compile project(path: ':erospluginkline')
+    compile project(path: ':KLineChartLib')
+}

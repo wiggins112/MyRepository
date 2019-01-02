@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="renderer" content="webkit">
+	<title>Document</title>
+	<script src="html2canvas.min.js"></script>
+	<style>
+	html,
+	body,
+	div,
+	p,
+	span {
+		margin: 0;
+		padding: 0;
+	}
+
+	.container {
+		max-width: 375px;
+		margin: auto;
+	}
+
+	.box {
+		position: relative;
+		background-color: #fbfcfe;
+	}
+
+	.head {
+		width: 100%;
+		height: 190px;
+		background: url('./image/share_bg.jpg');
+		background-repeat: no-repeat;
+		background-size: 100%;
+	}
+
+	.body {
+		position: relative;
+		margin-top: -70px;
+	}
+
+	.content_box {
+		padding: 20px 15px;
+		padding-bottom: 50px;
+		margin: 0 12px;
+		background-color: #fff;
+		border-radius: 6px 6px 0 0;
+	}
+
+	.share_box_shadow {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.time {
+		flex: 2;
+		text-align: left;
+		color: #B8BBC3;
+	}
+
+	.time_box {
+		display: flex;
+		padding-bottom: 10px;
+	}
+
+	.title {
+		font-weight: bolder;
+	}
+
+	.site {
+		padding-top: 15px;
+		font-size: 14px;
+		color: #999;
+	}
+
+	.content {
+		line-height: 26px;
+		font-size: 16px;
+	}
+
+	.tips1 {
+		padding-bottom: 5px;
+	}
+
+	.tips2 {
+		padding-left: 42px;
+	}
+
+	.wechat_qr {
+		width: 70px;
+		height: 70px;
+		background: url('./image/qr_blue.jpg') no-repeat;
+		background-position: center;
+		background-size: contain;
+	}
+
+	.wechat_text {
+		flex: 1;
+		padding-left: 15px;
+		font-weight: bolder;
+		color: #3152C3;
+		font-style: italic;
+	}
+
+	.qr_box {
+		padding: 10px 20px;
+		padding-top: 40px;
+		display: flex;
+		align-items: center;
+		background-color: #fff;
+		margin-top: -15px;
+		margin-bottom: -15px;
+	}
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<div class="box" class="box" id="capture">
+			<div class="head"></div>
+			<div class="body">
+				<img class="share_box_shadow" src="./image/share_box_shadow.png" alt="">
+				<div class="content_box">
+					<div class="content">
+						<div class="time_box">
+							<div class="time">
+								<span class="el-icon-time"></span>
+								<span class="date">2018-01-15</span>
+								<span class="week">&nbsp;&nbsp;&nbsp;星期一（今天）</span>
+							</div>
+						</div>
+						<span class="title">【新闻标题】</span>
+						<span class="text"> 在今日万向区块链实验室举办的2018区块链·新经济第四届区块链全球峰会上，日本经济产业省大臣官房企划官、数字战略负责人Yukl Takishima提到，目前，大多数人对于区块链的关注重点都在金融市场，但区块链对实体行业也有重要影响。区块链已经影响了 在今日万向区块链实验室举办的2018区块链·新经济第四届区块链全球峰会上，日本经济产业省大臣官房企划官、数字战略负责人Yukl Takishima提到，目前，大多数人对于区块链的关注重点都在金融市场，但区块链对实体行业也有重要影响。区块链已经影响了</span>
+						<div class="site">
+							<span>金色财经</span>
+							<span>&nbsp;&nbsp;|&nbsp;&nbsp;<span>今日头条&nbsp;&nbsp;</span>
+							</span>
+						</div>
+					</div>
+					<div class="qr_box">
+						<div class="wechat_qr"></div>
+						<div class="wechat_text">
+							<div class="text tips1">长按识别二维码 查看文章详情</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<img src="" id="image_dom" alt="">
+	</div>
+	<script>
+	var article_id = getUrlParam('article_id');
+	html2canvas(document.querySelector("#capture")).then(canvas => {
+		var dataUrl = canvas.toDataURL();
+		console.log(dataUrl)
+		var img = document.getElementById('image_dom');
+		img.src = dataUrl;
+		img.onload = function() {
+			var width = img.width;
+			var height = img.height;
+			console.log(width)
+			console.log(height);
+			PostFireEvent({
+				base64: dataUrl,
+				imageInfo: {
+					width: width,
+					height: height
+				},
+			})
+		}
+		// document.body.appendChild(canvas)
+
+	});
+
+	function PostFireEvent(opt) {
+		bmnative.fireEvent('ImagesDataUrl', JSON.stringify(opt));
+	}
+	/**
+	 * 取得url参数
+	 */
+	function getUrlParam(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); // 构造一个含有目标参数的正则表达式对象
+		var r = window.location.search.substr(1).match(reg); // 匹配目标参数
+		if (r != null) return unescape(r[2]);
+		return null; // 返回参数值
+	}
+
+	</script>
+</body>
+
+</html>

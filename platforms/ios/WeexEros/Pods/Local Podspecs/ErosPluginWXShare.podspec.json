@@ -1,0 +1,45 @@
+{
+  "name": "ErosPluginWXShare",
+  "version": "1.0.5",
+  "summary": "ErosPluginUMShare Source .",
+  "homepage": "http://git.truxing.com/ganlan_bc/eros-plugin-ios-wxshare.git",
+  "license": "MIT",
+  "authors": {
+    "xionghuayu": "18601949015@163.com"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "git": "http://git.truxing.com/ganlan_bc/eros-plugin-ios-wxshare.git",
+    "tag": "1.0.5"
+  },
+  "source_files": "Source/*.{h,m,mm}",
+  "requires_arc": true,
+  "dependencies": {
+    "UMCShare/Social/ReducedWeChat": [
+      "6.9.1"
+    ],
+    "WechatOpenSDK": [
+      "1.8.2"
+    ],
+    "UMCShare/Social/ReducedSina": [
+
+    ],
+    "UMCShare/Social/ReducedQQ": [
+
+    ],
+    "UMCShare/Social/Facebook": [
+
+    ],
+    "UMCShare/Social/Twitter": [
+
+    ],
+    "UMCShare/Social/Line": [
+
+    ],
+    "UMCShare/Social/WhatsApp": [
+
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+<resources>
+    <!--<string name="app_name">开1.7.0.2</string>-->
+    <!--<string name="scheme">bizhihui</string>-->
+
+    <string name="app_name">币智慧</string>
+    <string name="scheme">bizhihui</string>
+
+    <!--<string name="app_name">TokenWiz</string>-->
+    <!--<string name="scheme">tokenwiz</string>-->
+
+    <string name="umeng_socialize_female">女</string>
+    <string name="umeng_socialize_male">男</string>
+    <string name="facebook_app_id">2205555536435884</string>
+</resources>
