@@ -1,1 +1,0 @@
-../../../ErosPluginWXShare/Source/Target_BMWXShare.h

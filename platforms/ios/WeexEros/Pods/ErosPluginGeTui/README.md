@@ -1,1 +1,0 @@
-# eros-plugin-ios-getui

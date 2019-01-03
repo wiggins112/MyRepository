@@ -1,1 +1,0 @@
-../../../TencentCaptcha/Source/TencentCaptchaModule.h
