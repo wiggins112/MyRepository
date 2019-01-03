@@ -1,1 +1,23 @@
-include ':app'
+include ':app', ':sdk', ':nexus', ':wxframework', ':erospluginamap', ':erosplugingt', ':erospluginwxpay', ':erospluginwxshare', ':erospluginum', ':captchasdk-release', ':erosplugingoalkeeper', ':erospluginscreenshot', ':erospluginkline', ':KLineChartLib'
+
+// 基础库
+project(':wxframework').projectDir = new File(settingsDir,'/wxframework/eros-framework')
+project(':sdk').projectDir = new File(settingsDir,'/nexus/sdk')
+project(':nexus').projectDir = new File(settingsDir,'/nexus/nexus')
+// Amap
+project(':erospluginamap').projectDir = new File(settingsDir,'/ErosPluginAmap/ErosPluginAmap')
+// 个推
+project(':erosplugingt').projectDir = new File(settingsDir,'/erosplugingt/erosplugingt')
+// 微信支付
+project(':erospluginwxpay').projectDir = new File(settingsDir,'/erospluginwxpay/library-wxpay')
+// 分享
+project(':erospluginwxshare').projectDir = new File(settingsDir,'/erospluginumeng/library-wxshare')
+// umeng统计
+project(':erospluginum').projectDir = new File(settingsDir,'/erospluginum')
+project(':captchasdk-release').projectDir = new File('captchasdk-release-1.0.2')
+//防刷
+project(':erosplugingoalkeeper').projectDir = new File('erosplugingoalkeeper')
+// K线绘图库
+project(':KLineChartLib').projectDir = new File('KLineChartLib')
+
+
